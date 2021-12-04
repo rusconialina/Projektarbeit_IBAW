@@ -1,50 +1,51 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
+
 import { DataGrid } from "@mui/x-data-grid";
-//import { DataGridPro } from "@mui/x-data-grid-pro"; // Lizenz nötig...
 
 // Überschrift
 const columns = [
   {
-    field: "book",
-    minWidth: 150,
-    resizeable: true,
+    field: "titel",
+    minWidth: 250,
     editable: true,
     headerName: "Buch",
-    description:
-      "The identification used by the person with access to the online service.",
   },
-  { field: "autor", headerName: "Autor" },
+
+  { field: "band", minWidth: 50, headerName: "Band" },
+  { field: "autors", minWidth: 150, headerName: "Autor" },
 ];
 
-// Datensätze
-const rows = [
-  {
-    id: 1,
-    book: "@MUIsdfhdwghvjdwihvdcw",
-    autor: "Max Muster",
-  },
-  {
-    id: 2,
-    book: "@MUI",
-    autor: "Max Muster",
-  },
-  {
-    id: 3,
-    book: "@MUI",
-    autor: "Max Muster",
-  },
-  {
-    id: 4,
-    book: "@MUI",
-    autor: "Max Muster",
-  },
-];
+export default function BooksPage() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-// Table
-export default function ColumnSizingGrid() {
+  useEffect(() => {
+    fetch("http://localhost:3000/book")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+          console.log("response");
+        }
+        throw response;
+      })
+      .then((data) => {
+        setData(data);
+        console.log("data");
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+        setError(error);
+        console.log("error");
+      })
+      .finally(() => {
+        setLoading(false);
+        console.log("final");
+      });
+  }, []);
   return (
-    <div style={{ height: 500, width: "100%" }}>
-      <DataGrid columns={columns} rows={rows} />
+    <div style={{ width: "100%" }}>
+      <DataGrid columns={columns} rows={data} getRowId={(row) => row._id} />
     </div>
   );
 }
