@@ -8,8 +8,8 @@ function Home() {
     <h1>Home</h1>
 
     <Button variant="text">Text</Button>
-<Button variant="contained">Contained</Button>
-<Button variant="outlined">Outlined</Button>
+    <Button variant="contained">Contained</Button>
+    <Button variant="outlined">Outlined</Button>
   </div>;
 }
 
