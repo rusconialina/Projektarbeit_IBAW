@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.Home {
+  padding-bottom: 20px;
+}
+.Button {
+  padding-bottom: 20px;
+}

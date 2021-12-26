@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
 
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -11,7 +12,7 @@ const columns = [
     headerName: "Buch",
   },
 
-  { field: "band", minWidth: 50, headerName: "Band" },
+  { field: "band", minWidth: 150, headerName: "Band" },
   { field: "autors", minWidth: 150, headerName: "Autor" },
 ];
 
@@ -43,8 +44,14 @@ export default function BooksPage() {
         console.log("final");
       });
   }, []);
+
   return (
     <div style={{ width: "100%" }}>
+      <div>
+        <h1>Bücher</h1>
+        <Button variant="contained">Neu</Button>
+      </div>
+
       <DataGrid columns={columns} rows={data} getRowId={(row) => row._id} />
     </div>
   );
