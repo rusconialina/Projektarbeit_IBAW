@@ -6,7 +6,12 @@ import cors from "cors";
 connect();
 
 const app = express();
-app.use(cors());
+//app.use(cors());
+app.use("/login", (req, res) => {
+  res.send({
+    token: "test123",
+  });
+});
 const port = process.env.PORT || 3000;
 
 app.use(express.json());

@@ -1,17 +1,11 @@
 //import logo from "./logo.svg";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Books from "./pages/Books";
 import Book from "./pages/BooksDetail";
 import { useState, useEffect } from "react";
-import Dashboard from "./components/Dashboard";
-import Preferences from "./components/Preferences";
+import Dashboard from "./pages/Dashboard";
+import Preferences from "./pages/Preferences";
 import ButtonAppBar from "./components/NavBar";
 import "./App.css";
 
@@ -34,28 +28,23 @@ function App() {
     makeAPICall();
   }, []);
 */
-  /*
-  return (
-    <div className="wrapper">
-      <h1>Application</h1>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/preferences">
-            <Preferences />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
-  */
+
+  const [token, setToken] = useState();
+  if (!token) {
+    //return <Login setToken={setToken} />;
+  }
+
   return (
     <Router>
-      <Link to="/books">Bücherverwaltung</Link>
-      <Link to="/book">Detail</Link>
-      <Link to="/login">Login</Link>
+      <div class="header">
+        <div class="header-right">
+          <Link to="/books">Bücherverwaltung</Link>
+          <Link to="/book">Detail</Link>
+          <Link to="/login">Logout</Link>
+          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/preferences">Preferences</Link>
+        </div>
+      </div>
 
       <Routes>
         <Route path="/" element={<Books />} />
@@ -63,6 +52,8 @@ function App() {
         <Route path="/book" element={<Book />} />
         <Route path="*" element={<Books />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/preferences" element={<Preferences />} />
       </Routes>
     </Router>
   );
