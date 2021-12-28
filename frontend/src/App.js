@@ -6,7 +6,7 @@ import {
   Link,
   Switch,
 } from "react-router-dom";
-import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Books from "./pages/Books";
 import Book from "./pages/BooksDetail";
 import { useState, useEffect } from "react";
@@ -53,15 +53,16 @@ function App() {
   */
   return (
     <Router>
-      <Link to="/">Home</Link>
       <Link to="/books">Bücherverwaltung</Link>
       <Link to="/book">Detail</Link>
+      <Link to="/login">Login</Link>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Books />} />
         <Route path="/books" element={<Books />} />
         <Route path="/book" element={<Book />} />
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<Books />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

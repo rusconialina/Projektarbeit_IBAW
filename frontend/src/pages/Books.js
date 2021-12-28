@@ -14,6 +14,8 @@ const columns = [
 
   { field: "band", minWidth: 150, headerName: "Band" },
   { field: "autors", minWidth: 150, headerName: "Autor" },
+  { field: "date", minWidth: 150, headerName: "Rückgabedatum" },
+  { field: "rate", minWidth: 150, headerName: "Bewertung" },
 ];
 
 export default function BooksPage() {
@@ -52,7 +54,9 @@ export default function BooksPage() {
         <Button variant="contained">Neu</Button>
       </div>
 
-      <DataGrid columns={columns} rows={data} getRowId={(row) => row._id} />
+      <div style={{ height: 500, width: "100%" }}>
+        <DataGrid columns={columns} rows={data} getRowId={(row) => row._id} />
+      </div>
     </div>
   );
 }

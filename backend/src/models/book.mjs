@@ -14,15 +14,8 @@ const bookSchema = new Schema({
 
   genres: [String], // Keywords
 
-  ownership: { type: String }, // ausgeliehen/gekauft
-
-  date_listed: {
-    // Erfassungsdatum (Timestamp)
-    type: Date,
-  },
-
-  date_purchase: {
-    // Kauf-/Ausleihdatum
+  date: {
+    // Rückgabedatum
     type: Date,
   },
 
