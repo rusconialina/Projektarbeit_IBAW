@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Books from "./pages/Books";
@@ -36,8 +35,8 @@ function App() {
     <Router>
       <div class="header">
         <div class="header-right">
-          <Link to="/books">Bücherverwaltung</Link>
-          <Link to="/book">Detail</Link>
+          <Link to="/books">Übersicht</Link>
+          <Link to="/book">Neu</Link>
           <Link to="/login">Logout</Link>
         </div>
       </div>

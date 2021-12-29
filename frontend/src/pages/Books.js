@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-
+import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 
 // Überschrift
@@ -51,7 +51,7 @@ export default function BooksPage() {
     <div style={{ width: "100%" }}>
       <div>
         <h1>Bücher</h1>
-        <Button variant="contained">Neu</Button>
+        
       </div>
 
       <div style={{ height: 500, width: "100%" }}>
