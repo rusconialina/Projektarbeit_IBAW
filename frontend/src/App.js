@@ -4,10 +4,8 @@ import Login from "./pages/Login";
 import Books from "./pages/Books";
 import Book from "./pages/BooksDetail";
 import { useState, useEffect } from "react";
-import Dashboard from "./pages/Dashboard";
-import Preferences from "./pages/Preferences";
-import ButtonAppBar from "./components/NavBar";
 import "./App.css";
+import useToken from "./components/useToken";
 
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
@@ -29,7 +27,7 @@ function App() {
   }, []);
 */
 
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
   if (!token) {
     return <Login setToken={setToken} />;
   }
@@ -41,8 +39,6 @@ function App() {
           <Link to="/books">Bücherverwaltung</Link>
           <Link to="/book">Detail</Link>
           <Link to="/login">Logout</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/preferences">Preferences</Link>
         </div>
       </div>
 
@@ -52,8 +48,6 @@ function App() {
         <Route path="/book" element={<Book />} />
         <Route path="*" element={<Books />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/preferences" element={<Preferences />} />
       </Routes>
     </Router>
   );
