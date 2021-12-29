@@ -7,7 +7,7 @@ import {
 } from "../services/book.service.mjs";
 
 export const get = async (req, res) => {
-  // get book (one)
+  // get item (one)
   try {
     const book = await getBook(req.params.id);
     res.send(book);
@@ -18,7 +18,7 @@ export const get = async (req, res) => {
 };
 
 export const list = async (req, res) => {
-  // get book list (all)
+  // get list (all)
   try {
     const books = await getBooks();
     res.send(books);
@@ -30,7 +30,7 @@ export const list = async (req, res) => {
 };
 
 export const create = async (req, res) => {
-  // create book
+  // create
   try {
     const book = await createBook(req.body);
     res.send(article);
@@ -42,7 +42,7 @@ export const create = async (req, res) => {
 };
 
 export const update = async (req, res) => {
-  // update book
+  // update
   try {
     const result = await updateBook(req.params.id, req.body);
     res.send(result);
@@ -54,7 +54,7 @@ export const update = async (req, res) => {
 };
 
 export const remove = async (req, res) => {
-  // remove book
+  // remove
   try {
     res.send(await removeBook(req.params.id));
   } catch (err) {
