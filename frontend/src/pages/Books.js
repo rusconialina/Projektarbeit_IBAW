@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useLinkClickHandler } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 
 // Überschrift
@@ -17,6 +17,14 @@ const columns = [
   { field: "date", minWidth: 150, headerName: "Rückgabedatum" },
   { field: "rate", minWidth: 150, headerName: "Bewertung" },
 ];
+
+//todo Klick auf Zeile -> Row ID
+function getRowId() {}
+console.log();
+
+//todo Öffnen der ID in Detail
+
+
 
 export default function BooksPage() {
   const [data, setData] = useState(null);
@@ -54,7 +62,12 @@ export default function BooksPage() {
       </div>
 
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid columns={columns} rows={data} getRowId={(row) => row._id} />
+        <DataGrid
+          autoHeight="true"
+          columns={columns}
+          rows={data}
+          getRowId={(row) => row._id}
+        />
       </div>
     </div>
   );

@@ -3,6 +3,18 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
+//todo ID des Buches
+//getRowId
+
+//todo Wenn keine ID -> Speichern=Create, Löschen disable
+const buttonSave = "create";
+if (false) {
+  buttonSave = "update";
+}
+//todo Wenn ID -> Speichern=Update
+
+//todo Reload Übersicht
+
 export default function BookDetail() {
   return (
     <div style={{ width: "100%" }}>
@@ -32,15 +44,11 @@ export default function BookDetail() {
         </Box>
       </div>
       <div>
-        <Button id="save" variant="contained" color="success">
+        <Button variant="contained" color="success">
           Speichern
         </Button>
-        <Button id="cancel" color="secondary">
-          Abbrechen
-        </Button>
-        <Button id="delete" color="error">
-          Löschen
-        </Button>
+        <Button color="secondary">Abbrechen</Button>
+        <Button color="error">Löschen</Button>
       </div>
     </div>
   );
