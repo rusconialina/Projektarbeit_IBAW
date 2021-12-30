@@ -32,11 +32,15 @@ export default function BookDetail() {
         </Box>
       </div>
       <div>
-        <Button variant="contained" color="success">
+        <Button id="save" variant="contained" color="success">
           Speichern
         </Button>
-        <Button color="secondary">Abbrechen</Button>
-        <Button color="error">Löschen</Button>
+        <Button id="cancel" color="secondary">
+          Abbrechen
+        </Button>
+        <Button id="delete" color="error">
+          Löschen
+        </Button>
       </div>
     </div>
   );

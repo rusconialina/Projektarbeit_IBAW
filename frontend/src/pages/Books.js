@@ -51,7 +51,6 @@ export default function BooksPage() {
     <div style={{ width: "100%" }}>
       <div>
         <h1>Bücher</h1>
-        
       </div>
 
       <div style={{ height: 500, width: "100%" }}>
