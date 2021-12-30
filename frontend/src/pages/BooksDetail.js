@@ -3,17 +3,16 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-//todo ID des Buches
+//todo ID
 //getRowId
-
-//todo Wenn keine ID -> Speichern=Create, Löschen disable
+//Wenn Neu -> Speichern=Create, Löschen disable
+//Wenn ID -> Speichern=Update
 const buttonSave = "create";
 if (false) {
   buttonSave = "update";
 }
-//todo Wenn ID -> Speichern=Update
 
-//todo Reload Übersicht
+//todo Abbrechen -> reload Übersicht
 
 export default function BookDetail() {
   return (
