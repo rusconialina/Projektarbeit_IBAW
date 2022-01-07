@@ -15,6 +15,10 @@ if (false) {
 //todo Abbrechen -> reload Übersicht
 
 export default function BookDetail() {
+  function clickSave() {
+    console.log("TEST");
+  }
+
   return (
     <div style={{ width: "100%" }}>
       <div>
@@ -43,7 +47,7 @@ export default function BookDetail() {
         </Box>
       </div>
       <div>
-        <Button variant="contained" color="success">
+        <Button onClick={clickSave} variant="contained" color="success">
           Speichern
         </Button>
         <Button color="secondary">Abbrechen</Button>

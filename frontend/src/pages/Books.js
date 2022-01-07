@@ -34,7 +34,7 @@ export default function BooksPage() {
   useEffect(() => {
     fetch("http://localhost:3000/book")
       .then((response) => {
-        if (response.ok) {
+        if (ruesponse.ok) {
           return response.json();
           console.log("response");
         }
