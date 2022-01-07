@@ -7,7 +7,18 @@ connect();
 
 const app = express();
 app.use(cors());
+
+app.use(function (req, res, next) {
+  console.log("Time:", Date.now());
+
+  // logik
+
+  next();
+});
+
 app.use("/login", (req, res) => {
+  //login prüfen
+  console.log(req);
   res.send({
     token: "test123",
   });
