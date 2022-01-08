@@ -32,9 +32,14 @@ export default function BooksPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/book")
+    fetch("http://localhost:3000/book", {
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization':  sessionStorage.getItem("token"),
+      },
+    })
       .then((response) => {
-        if (ruesponse.ok) {
+        if (response.ok) {
           return response.json();
           console.log("response");
         }
