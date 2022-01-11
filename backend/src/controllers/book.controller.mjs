@@ -13,7 +13,6 @@ export const get = async (req, res) => {
     res.send(book);
   } catch (err) {
     console.log("Upps.. Es ist ein Fehler aufgetreten.", err);
-    next();
   }
 };
 
@@ -25,7 +24,6 @@ export const list = async (req, res) => {
   } catch (err) {
     res.send(err);
     console.error(err);
-    next();
   }
 };
 
@@ -37,7 +35,6 @@ export const create = async (req, res) => {
   } catch (err) {
     res.send(err);
     console.error(err);
-    next();
   }
 };
 
@@ -49,7 +46,6 @@ export const update = async (req, res) => {
   } catch (err) {
     res.send(err);
     console.error(err);
-    next();
   }
 };
 
@@ -60,6 +56,5 @@ export const remove = async (req, res) => {
   } catch (err) {
     res.send(err);
     console.error(err);
-    next();
   }
 };

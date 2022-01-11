@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
-import {getBookById, saveBook} from "../services/BookService";
+import {deleteBook, getBookById, saveBook} from "../services/BookService";
 import {useState} from "react";
 import {BookRequest} from "../models/BookRequest";
 
@@ -71,7 +71,14 @@ export default function BookDetail() {
 
 
     function clickDelete() {
-
+        deleteBook(bookId)
+            .then(function (response) {
+                // todo alina write html message book is delete successful for user
+                navigate('/books')
+            })
+            .catch(function (error) {
+                navigate('/books')
+            });
     }
 
 
