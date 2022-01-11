@@ -9,17 +9,17 @@ import {BookRequest} from "../models/BookRequest";
 export default function BookDetail() {
     const navigate = useNavigate();
 
-    const [titel, setTitel] = useState('');
-    const [band, setBand] = useState('');
-    const [autor, setAutor] = useState('');
-    const [bewertung, setBewertung] = useState('');
-    const [datum, setDatum] = useState('');
-    const [keywords, setKeywords] = useState('');
+    const [titel, setTitel] = useState(null);
+    const [band, setBand] = useState();
+    const [autor, setAutor] = useState();
+    const [bewertung, setBewertung] = useState();
+    const [datum, setDatum] = useState();
+    const [keywords, setKeywords] = useState();
 
     // get form url, if bookId not defined then create new book otherwise update existing book in db
     const { bookId } = useParams();
     let isNewBook = true;
-    if (bookId !== 0){
+    if (bookId != 0){
         isNewBook = false;
         getBookById(bookId)
             .then(function (response) {
