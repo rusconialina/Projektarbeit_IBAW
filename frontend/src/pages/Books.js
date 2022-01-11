@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import {DataGrid} from "@mui/x-data-grid";
 import {getBooks} from "../services/BookService";
 import {useNavigate} from "react-router-dom";
+import Button from "@mui/material/Button";
 
 // Überschrift
 const columns = [
@@ -29,8 +30,8 @@ export default function BooksPage() {
         getBooks()
             .then(function (response) {
                 setData(response.data);
-                setLoading(false);
-            });
+            })
+            .finally(() => setLoading(false));
 
     }, []);
 
@@ -39,6 +40,10 @@ export default function BooksPage() {
             <div>
                 <h1>Bücher</h1>
             </div>
+
+            <Button onClick={() => navigate('/books/0')} color="secondary">
+                Neues Buch erstellen
+            </Button>
 
             <div style={{height: 500, width: "100%"}}>
                 <DataGrid
