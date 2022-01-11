@@ -59,7 +59,7 @@ export default function BookDetail() {
             saveBook(bookRequest)
                 .then(function (response) {
                     // todo alina write html message book is save successful for user
-                    navigate('books')
+                    navigate('/books')
                 })
                 .catch(function (error) {
                     //todo alina make a html error message for the user "das buch konnte nicht gespeichert werden" and show in html under the form

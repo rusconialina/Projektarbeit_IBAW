@@ -33,7 +33,7 @@ export const create = async (req, res) => {
   // create
   try {
     const book = await createBook(req.body);
-    res.send(article);
+    res.send(book);
   } catch (err) {
     res.send(err);
     console.error(err);
