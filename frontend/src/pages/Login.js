@@ -1,30 +1,28 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import {LoginRequest} from "../models/LoginRequest";
+import  {loginUser} from "../services/AuthenticationService";
+import { useNavigate } from "react-router-dom";
 
-async function loginUser(credentials) {
-  return fetch("http://localhost:3000/authentication/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
-}
-export default function Login({ setToken }) {
+
+
+
+export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password,
+
+    await loginUser(
+        new LoginRequest(username, password)
+    ).then(function (response){
+      navigate('/books');
+      return true;
+    }).catch(function (error) {
+      //todo alina make a html error message for the user "Passwort oder Username nicht korrekt" and show in html under the form
     });
-    setToken(token);
   };
-
-  //todo überprüfung eingabe
-
 
   return (
     <div className="login-wrapper">
@@ -48,7 +46,3 @@ export default function Login({ setToken }) {
     </div>
   );
 }
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};

@@ -5,7 +5,7 @@ dotenv.config();
 
 export default function connect() {
   try {
-    mongoose.connect(process.env.MONGO_URI, {
+    mongoose.connect('mongodb+srv://ibaw:Y12AyGPaltP8EEMK@bibliothek.ujnx7.mongodb.net/test', {
       useNewUrlParser: true,
     });
   } catch (e) {

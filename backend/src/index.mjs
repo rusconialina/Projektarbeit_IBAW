@@ -3,8 +3,9 @@ import bookRoutes from "./routes/book.routes.mjs";
 import cors from "cors";
 import authenticationRoutes from "./routes/authentication.routes.mjs";
 import {checkAccessToken} from "./services/authentication.service.mjs";
+import connect from "./utils/db.mjs";
 
-//connect();
+connect();
 
 const app = express();
 const port = process.env.PORT || 3000;
