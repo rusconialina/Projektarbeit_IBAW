@@ -32,7 +32,7 @@ export function setAccessToken(accessToken){
 
 export function getAccessToken(){
     const saveAccessToken = sessionStorage.getItem(sessionTokenKey);
-    return saveAccessToken !== undefined && saveAccessToken !== null && saveAccessToken !== '' ? saveAccessToken : null;
+    return saveAccessToken === 'null' || saveAccessToken === undefined || saveAccessToken === null || saveAccessToken === '' ? saveAccessToken : saveAccessToken;
 }
 
 export function clearAccessToken(){

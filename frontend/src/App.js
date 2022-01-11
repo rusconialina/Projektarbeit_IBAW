@@ -20,7 +20,6 @@ function App() {
         navigate('/login');
     }
 
-
     // if no access token user is not login
     if (!getAccessToken()) {
         return <Login/>;
@@ -31,8 +30,6 @@ function App() {
 
         <div className="header">
             <div className="header-right">
-                <Link to="/books">Übersicht</Link>
-                <Link to="/book">Neu</Link>
                 <a onClick={logoutAndRedirect}>Logout</a>
             </div>
         </div>
@@ -40,8 +37,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Books />} />
         <Route exact path="/books" element={<Books />} />
-        <Route exact path="/book" element={<Book />} />
-        <Route exact path="*" element={<Books />} />
+        <Route exact path="/books/:id" element={<Book />} />
         <Route exact path="/login" element={<Login />} />
       </Routes>
     </div>

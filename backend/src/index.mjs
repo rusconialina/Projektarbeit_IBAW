@@ -28,13 +28,13 @@ app.use(cors());
 // Token Authentication Middleware (Protect all Routes except the login route)
 app.use(function (req, res, next) {
   console.log('Hit Token Authentication Middleware');
-  /*const sendAccessToken = req.headers.authorization; //the access token is in the HTTP Auth header
+  const sendAccessToken = req.headers.authorization; //the access token is in the HTTP Auth header
 
   // login route not protected because no token needed is username/password!
   if (req.url !== loginRoute){
 
     // all other routes check access token before continue
-    if (!sendAccessToken) { // check is there access token in http authorization header
+    if (!sendAccessToken && sendAccessToken !== '') { // check is there access token in http authorization header
       return res.status(403).json({ error: 'Missing HTTP authorization header' });
     }
 
@@ -43,7 +43,7 @@ app.use(function (req, res, next) {
       return res.status(403).json({ error: `Permission denied. The access token:${sendAccessToken} is not valid` });
     }
 
-  }*/
+  }
 
   // only if all checks above are valid, continue with the request (send to the controller z.B. /books)
   next();
