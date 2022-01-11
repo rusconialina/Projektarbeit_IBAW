@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Routes, Route, Link, useNavigate} from "react-r
 import Login from "./pages/Login";
 import Books from "./pages/Books";
 import Book from "./pages/BooksDetail";
-import "./App.css";
+import "./styles/App.css";
 
 
 import "@fontsource/roboto/300.css";
@@ -29,9 +29,8 @@ function App() {
     <div>
 
         <div className="header">
-            <div className="header-right">
-                <a onClick={logoutAndRedirect}>Logout</a>
-            </div>
+            <a className='titel'>Alina's Bibliothek</a>
+            <a onClick={logoutAndRedirect}>Logout</a>
         </div>
 
       <Routes>

@@ -85,15 +85,15 @@ export default function BookDetail() {
 
 
     return (
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%" }} className='main-book'>
             <div>
-                <h1>Detail</h1>
+                <h2>Detail</h2>
             </div>
             <div>
                 <Box
                     component="form"
                     sx={{
-                        "& > :not(style)": { m: 1, width: "25ch" },
+                        "& > :not(style)": { width: "20rem", marginBottom: '1rem', marginRight:'1rem'},
                     }}
                     noValidate
                     autoComplete="off"
@@ -143,7 +143,7 @@ export default function BookDetail() {
                     />
                 </Box>
             </div>
-            <div>
+            <div className='button'>
                 <Button onClick={clickSave} variant="contained" color="success">
                     Speichern
                 </Button>

@@ -36,16 +36,15 @@ export default function BooksPage() {
     }, []);
 
     return (
-        <div style={{width: "100%"}}>
-            <div>
-                <h1>Bücher</h1>
+        <div style={{width: "100%"}} className="main">
+            <div className='main-book'>
+                <p>
+                    <Button className="button-new" onClick={() => navigate('/books/0')} variant="outlined">
+                        Neues Buch erstellen
+                    </Button>
+                </p>
             </div>
-
-            <Button onClick={() => navigate('/books/0')} color="secondary">
-                Neues Buch erstellen
-            </Button>
-
-            <div style={{height: 500, width: "100%"}}>
+            <div style={{height: 500, width: "100%"}} className='grid'>
                 <DataGrid
                     autoHeight="true"
                     columns={columns}
@@ -53,10 +52,13 @@ export default function BooksPage() {
                     loading={loading}
                     getRowId={(row) => row._id}
                     onRowClick={(params, event) => {
-                      navigate('/books/' + params.id);
+                      navigate('/books/' + params.id)
+                      ;
                     }}
+                    hideFooter= "true"
                 />
             </div>
+
         </div>
     );
 }
