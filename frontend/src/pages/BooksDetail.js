@@ -39,7 +39,11 @@ export default function BookDetail() {
             })
     }
 
-
+    function message(alert){
+        setTimeout(function(){
+            window.alert(alert);
+        },100);
+    }
 
     function clickSave() {
         if ((titel === "") && (titel === null)) {
@@ -59,10 +63,27 @@ export default function BookDetail() {
             saveBook(bookRequest)
                 .then(function (response) {
                     // todo alina write html message book is save successful for user
+                    //message("Buch wurde erstellt.");
+                    function message(){
+
+                    }
+
+                    /*
+                    $(document).ready(function() {
+                        $("#success-alert").hide();
+                        $("#myWish").click(function showAlert() {
+                            $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+                                $("#success-alert").slideUp(500);
+                            });
+                        });
+                    });
+                    */
+
                     navigate('/books')
                 })
                 .catch(function (error) {
                     //todo alina make a html error message for the user "das buch konnte nicht gespeichert werden" and show in html under the form
+                    message("Buch konnte nicht gespeichert werden");
                 });
         }else {
             //todo update book in db
@@ -74,6 +95,7 @@ export default function BookDetail() {
         deleteBook(bookId)
             .then(function (response) {
                 // todo alina write html message book is delete successful for user
+                message("Buch wurde gelöscht");
                 navigate('/books')
             })
             .catch(function (error) {
@@ -81,14 +103,9 @@ export default function BookDetail() {
             });
     }
 
-
-
-
     return (
         <div style={{ width: "100%" }} className='main-book'>
-            <div>
                 <h2>Detail</h2>
-            </div>
             <div>
                 <Box
                     component="form"
@@ -154,6 +171,13 @@ export default function BookDetail() {
                     Löschen
                 </Button>
             </div>
+
+            <div className="alert alert-success" id="success-alert" >
+                <button type="button" className="close" data-dismiss="alert">x</button>
+                <strong>Success! </strong>
+                Product have added to your wishlist.
+            </div>
+
         </div>
     );
 }
