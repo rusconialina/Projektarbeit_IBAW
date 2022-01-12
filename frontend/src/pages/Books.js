@@ -14,8 +14,8 @@ const columns = [
 
     {field: "volume", minWidth: 50, headerName: "Band"},
     {field: "autor", minWidth: 150, headerName: "Autor"},
-    {field: "date", minWidth: 105, headerName: "Datum"},
-    {field: "rate", minWidth: 50, headerName: "Bewertung"},
+    {field: "date", minWidth: 105, headerName: "Datum", type:"date"},
+    {field: "rate", minWidth: 50, headerName: "Bewertung",},
     {field: "genre", minWidth: 150, headerName: "Genre"},
 ];
 

@@ -6,7 +6,7 @@ import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {deleteBook, getBookById, saveBook, updateBook} from "../services/BookService";
 import {useState} from "react";
 import {BookRequest} from "../models/BookRequest";
-import MuiAlert from '@mui/material/Alert';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 export default function BookDetail() {
     const navigate = useNavigate();
@@ -23,22 +23,32 @@ export default function BookDetail() {
     let isNewBook = true;
     if (bookId != 0){
         isNewBook = false;
-        getBookById(bookId)
-            .then(function (response) {
 
-                // set html form data form http request
-                setTitel(response.data.titel)
-                setVolume(response.data.volume)
-                setAutor(response.data.autor)
-                setRate(response.data.rate)
-                setDate(response.data.date)
-                setGenre(response.data.genre)
+       // if (reload) {
 
-            })
-            .catch(function (error) {
-                // book not found in database go back to übersicht
-                navigate('/books')
-            })
+            getBookById(bookId)
+                .then(function (response) {
+                    // todo update geht nicht wegen aktualisierung
+                    // todo anzeige beim ersten laden des details
+
+                    // set html form data form http request
+                    setTitel(response.data.titel)
+                    setVolume(response.data.volume)
+                    setAutor(response.data.autor)
+                    setRate(response.data.rate)
+                    setDate(response.data.date)
+                    setGenre(response.data.genre)
+                })
+                .catch(function (error) {
+                    // book not found in database go back to übersicht
+                    navigate('/books')
+                })
+
+
+   //     } else {
+     //       console.log("else " + reload);
+
+     //   }
     }
 
     function message(alert){
@@ -56,8 +66,8 @@ export default function BookDetail() {
             titel,
             volume,
             autor,
-            rate,
             date,
+            rate,
             genre
         );
 
@@ -94,8 +104,19 @@ export default function BookDetail() {
                 navigate('/books')
             });
     }
-
-
+/*
+    const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+    const handleChange = (newValue) => {
+        setValue(newValue);
+    };
+    <DesktopDatePicker
+        label="Date desktop"
+        inputFormat="dd/MM/yyyy"
+        value={value}
+        onChange={handleChange}
+        //renderInput={(params) => <TextField {...params} />}
+    />
+*/
     return (
         <div style={{ width: "100%" }} className='main-book'>
                 <h2>Detail</h2>
@@ -151,8 +172,8 @@ export default function BookDetail() {
                         onChange={(e) => setDate(e.target.value)}
                         value={date}
                     />
-
                 </Box>
+
             </div>
             <div className='button'>
                 <Button onClick={clickSave} variant="contained" color="success">

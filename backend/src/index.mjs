@@ -69,7 +69,7 @@ app.use("/book", bookRoutes);
 
 // =========== Socket IO ===========
 const httpServer = createServer(app);
-const intervallInSecondsCheckIsDateExpired = 10000;
+const intervallInSecondsCheckIsDateExpired = 1000;
 const io = new Server(httpServer, { cors: {
         origin: ["http://localhost:8082", "http://localhost:8000"], // register all frontend application urls
         methods: ["GET", "POST"]

@@ -25,14 +25,11 @@ export function startListeningOnSocket() {
         //console.log(allExpiredBookIds)
 
         const expired = allExpiredBookIds.hasOwnProperty('expired') ? allExpiredBookIds.expired : [];
-
-        // todo alina das mit einer react component schön und gut darstellen!!!!
-        let message = 'All Books expired Date: ';
-        for (const book of expired) {
-            message += book.titel + ', \n'
-        }
-
         if (expired.length){
+            let message = 'Rückgabe überfällig:\n';
+            for (const book of expired) {
+                message += book.titel + '\n'
+            }
             alert(message)
         }
     });

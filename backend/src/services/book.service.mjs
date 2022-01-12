@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import Book from "../models/book.mjs";
 
-let ddd = 0;
-
 export async function getBook(id) {
   return Book.findOne({
     _id: mongoose.Types.ObjectId(id),
@@ -14,12 +12,11 @@ export async function getBooks() {
 }
 
 export async function createBook(payload) {
-  //todo date, rate gehen noch nicht
   return Book.create(payload);
 }
 
 export async function updateBook(id, payload) {
-  //todo geht noch nicht
+  //todo update geht noch nicht
   return Book.findOneAndUpdate({ _id: mongoose.Types.ObjectId(id) }, payload, {
     new: true,
   });
@@ -36,11 +33,8 @@ export async function checkAllBooksIsDateExpired(socket){
     let bookNotExpired = []
 
     for (let i = 0; i < books.length; i++) {
-      //todo Datumsformat
-      if (books[i].date && books[i].date > Date.now()){
+      if (books[i].date && books[i].date < Date.now()){
         bookExpired.push(books[i])
-      }else {
-        bookNotExpired.push(books[i])
       }
     }
 

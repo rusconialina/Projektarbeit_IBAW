@@ -14,15 +14,9 @@ const bookSchema = new Schema({
 
   genre: String, // Keywords
 
-  date: {
-    // Rückgabedatum
-    type: Date,
-  },
+  date: Date,  // Rückgabedatum
 
-  rate: {
-    // Bewertung
-    type: Number,
-  },
+  rate: Number, //Bewertung
 });
 
 export default mongoose.model("book", bookSchema, "book");

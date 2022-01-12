@@ -32,7 +32,7 @@ export default function Login() {
       navigate('/books');
       return true;
     }).catch(function (error) {
-      //todo alina make a html error message for the user "Passwort oder Username nicht korrekt" and show in html under the form
+      alert("Benutzername oder/und Passwort falsch.");
     });
   };
 
