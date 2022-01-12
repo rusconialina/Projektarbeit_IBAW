@@ -2,6 +2,7 @@ import axios from "axios";
 import {baseBackendUrl} from "../env/environment";
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {startListeningOnSocket} from "./SocketService";
 
 
 
@@ -13,6 +14,7 @@ export function loginUser(loginRequest) {
         .then(function (response) {
             if(response.status === 200 && response.data.accessToken){
                 setAccessToken(response.data.accessToken);
+                startListeningOnSocket();
             }
             return response
         });
