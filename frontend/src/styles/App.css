@@ -59,18 +59,3 @@ h2{
   float: left;
   margin-left: 1rem;
 }
-
-.alert{
-  background-color: rgba(234, 204, 67, 0.46);
-  color: #7a6502;
-}
-
-.alert-success{
-  background-color: rgba(133, 238, 125, 0.46);
-  color: #1e8b00;
-}
-
-.alert-failed{
-  background-color: rgba(238, 125, 125, 0.46);
-  color:darkred;
-}

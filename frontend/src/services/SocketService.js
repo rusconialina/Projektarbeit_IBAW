@@ -2,6 +2,9 @@ import {io} from "socket.io-client";
 import {baseSocketIoBackendUrl} from "../env/environment";
 import {getAccessToken} from "./AuthenticationService";
 import {Alert} from "@mui/material";
+import * as React from 'react';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 export function startListeningOnSocket() {
     let socket = io(baseSocketIoBackendUrl, {
@@ -19,22 +22,19 @@ export function startListeningOnSocket() {
     // start listening on event checkExpireDateBooks
     socket.on('checkExpireDateBooks', function(allExpiredBookIds) {
         console.log('checkExpireDateBooks response form socket io');
-        console.log(allExpiredBookIds)
+        //console.log(allExpiredBookIds)
 
         const expired = allExpiredBookIds.hasOwnProperty('expired') ? allExpiredBookIds.expired : [];
-        const notExpired = allExpiredBookIds.hasOwnProperty('notExpired') ? allExpiredBookIds.notExpired : [];
 
         // todo alina das mit einer react component schön und gut darstellen!!!!
         let message = 'All Books expired Date: ';
         for (const book of expired) {
             message += book.titel + ', \n'
         }
-        message += '\n\n\nAll Books NOT expired Date'
-        for (const book of notExpired) {
-            message += book.titel + ', \n'
-        }
-        alert(message)
 
+        if (expired.length){
+            alert(message)
+        }
     });
 
     // error handling

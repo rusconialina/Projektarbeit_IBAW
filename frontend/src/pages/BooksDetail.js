@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -5,6 +6,7 @@ import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {deleteBook, getBookById, saveBook} from "../services/BookService";
 import {useState} from "react";
 import {BookRequest} from "../models/BookRequest";
+import MuiAlert from '@mui/material/Alert';
 
 export default function BookDetail() {
     const navigate = useNavigate();
@@ -62,46 +64,29 @@ export default function BookDetail() {
         if (isNewBook){
             saveBook(bookRequest)
                 .then(function (response) {
-                    // todo alina write html message book is save successful for user
-                    //message("Buch wurde erstellt.");
-                    function message(){
-
-                    }
-
-                    /*
-                    $(document).ready(function() {
-                        $("#success-alert").hide();
-                        $("#myWish").click(function showAlert() {
-                            $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
-                                $("#success-alert").slideUp(500);
-                            });
-                        });
-                    });
-                    */
-
+                    message("Buch wurde erstellt.");
                     navigate('/books')
                 })
                 .catch(function (error) {
-                    //todo alina make a html error message for the user "das buch konnte nicht gespeichert werden" and show in html under the form
-                    message("Buch konnte nicht gespeichert werden");
+                    message("FEHLER \nBuch konnte nicht gespeichert werden");
                 });
         }else {
             //todo update book in db
         }
     }
 
-
     function clickDelete() {
         deleteBook(bookId)
             .then(function (response) {
-                // todo alina write html message book is delete successful for user
                 message("Buch wurde gelöscht");
                 navigate('/books')
             })
             .catch(function (error) {
+                message("FEHLER \nBuch konnte nicht gelöscht werden");
                 navigate('/books')
             });
     }
+
 
     return (
         <div style={{ width: "100%" }} className='main-book'>
@@ -158,6 +143,7 @@ export default function BookDetail() {
                         onChange={(e) => setDatum(e.target.value)}
                         value={datum}
                     />
+
                 </Box>
             </div>
             <div className='button'>
@@ -171,13 +157,6 @@ export default function BookDetail() {
                     Löschen
                 </Button>
             </div>
-
-            <div className="alert alert-success" id="success-alert" >
-                <button type="button" className="close" data-dismiss="alert">x</button>
-                <strong>Success! </strong>
-                Product have added to your wishlist.
-            </div>
-
         </div>
     );
 }
