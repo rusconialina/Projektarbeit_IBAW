@@ -12,11 +12,11 @@ export default function BookDetail() {
     const navigate = useNavigate();
 
     const [titel, setTitel] = useState(null);
-    const [band, setBand] = useState();
+    const [volume, setVolume] = useState();
     const [autor, setAutor] = useState();
-    const [bewertung, setBewertung] = useState();
-    const [datum, setDatum] = useState();
-    const [keywords, setKeywords] = useState();
+    const [rate, setRate] = useState();
+    const [date, setDate] = useState();
+    const [genre, setGenre] = useState();
 
     // get form url, if bookId not defined then create new book otherwise update existing book in db
     const { bookId } = useParams();
@@ -28,11 +28,11 @@ export default function BookDetail() {
 
                 // set html form data form http request
                 setTitel(response.data.titel)
-                setBand(response.data.band)
-                setAutor(response.data.author)
-                setBewertung(response.data.rate)
-                setDatum(response.data.date)
-                setKeywords(response.data.keywords)
+                setVolume(response.data.volume)
+                setAutor(response.data.autor)
+                setRate(response.data.rate)
+                setDate(response.data.date)
+                setGenre(response.data.genre)
 
             })
             .catch(function (error) {
@@ -54,11 +54,11 @@ export default function BookDetail() {
 
         let bookRequest = new BookRequest(
             titel,
-            band,
+            volume,
             autor,
-            bewertung,
-            datum,
-            keywords
+            rate,
+            date,
+            genre
         );
 
         if (isNewBook){
@@ -120,8 +120,8 @@ export default function BookDetail() {
                         id="outlined-basic"
                         label="Band"
                         variant="outlined"
-                        onChange={(e) => setBand(e.target.value)}
-                        value={band}
+                        onChange={(e) => setVolume(e.target.value)}
+                        value={volume}
                     />
                     <TextField
                         id="outlined-basic"
@@ -132,24 +132,24 @@ export default function BookDetail() {
                     />
                     <TextField
                         id="outlined-basic"
-                        label="Keywords"
+                        label="Genre"
                         variant="outlined"
-                        onChange={(e) => setKeywords(e.target.value)}
-                        value={keywords}
+                        onChange={(e) => setGenre(e.target.value)}
+                        value={genre}
                     />
                     <TextField
                         id="outlined-basic"
                         label="Bewertung"
                         variant="outlined"
-                        onChange={(e) => setBewertung(e.target.value)}
-                        value={bewertung}
+                        onChange={(e) => setRate(e.target.value)}
+                        value={rate}
                     />
                     <TextField
                         id="outlined-basic"
                         label="Datum"
                         variant="outlined"
-                        onChange={(e) => setDatum(e.target.value)}
-                        value={datum}
+                        onChange={(e) => setDate(e.target.value)}
+                        value={date}
                     />
 
                 </Box>

@@ -10,9 +10,9 @@ const bookSchema = new Schema({
 
   volume: { type: Number }, // Band-Nr.
 
-  autors: String, // Autoren
+  autor: String, // Autoren
 
-  genres: String, // Keywords
+  genre: String, // Keywords
 
   date: {
     // Rückgabedatum

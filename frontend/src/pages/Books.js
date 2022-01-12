@@ -12,10 +12,11 @@ const columns = [
         "headerName": "Buch",
     },
 
-    {field: "band", minWidth: 150, headerName: "Band"},
-    {field: "autors", minWidth: 150, headerName: "Autor"},
-    {field: "date", minWidth: 150, headerName: "Rückgabedatum"},
-    {field: "rate", minWidth: 150, headerName: "Bewertung"},
+    {field: "volume", minWidth: 50, headerName: "Band"},
+    {field: "autor", minWidth: 150, headerName: "Autor"},
+    {field: "date", minWidth: 105, headerName: "Datum"},
+    {field: "rate", minWidth: 50, headerName: "Bewertung"},
+    {field: "genre", minWidth: 150, headerName: "Genre"},
 ];
 
 
