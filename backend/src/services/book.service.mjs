@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import Book from "../models/book.mjs";
 
+let ddd = 0;
+
 export async function getBook(id) {
   return Book.findOne({
     _id: mongoose.Types.ObjectId(id),

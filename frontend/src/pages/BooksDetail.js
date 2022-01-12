@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
-import {deleteBook, getBookById, saveBook} from "../services/BookService";
+import {deleteBook, getBookById, saveBook, updateBook} from "../services/BookService";
 import {useState} from "react";
 import {BookRequest} from "../models/BookRequest";
 import MuiAlert from '@mui/material/Alert';
@@ -71,7 +71,15 @@ export default function BookDetail() {
                     message("FEHLER \nBuch konnte nicht gespeichert werden");
                 });
         }else {
-            //todo update book in db
+            updateBook(bookRequest)
+                .then(function (response) {
+                    message("Buch wurde aktualisiert.");
+                    navigate('/books')
+                })
+                .catch(function (error) {
+                    message("FEHLER \nÄnderungen konnten nicht gespeichert werden");
+                });
+
         }
     }
 
