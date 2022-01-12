@@ -6,10 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import axios from "axios";
 import {getAccessToken} from "./services/AuthenticationService";
 import {BrowserRouter} from "react-router-dom";
+import {startListeningOnSocket} from "./services/SocketService";
 
 // ======= Register all middleware/interceptor for axios requests
 axios.defaults.headers.common['Authorization'] = getAccessToken();
 
+
+if (getAccessToken()){
+    startListeningOnSocket();
+}
 
 // ======= Render react js app ========
 ReactDOM.render(

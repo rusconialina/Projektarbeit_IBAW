@@ -11,9 +11,13 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import {getAccessToken, logoutUser} from "./services/AuthenticationService";
+import {io} from "socket.io-client";
+import {baseSocketIoBackendUrl} from "./env/environment";
+import {useEffect} from "react";
 
 function App() {
     const navigate = useNavigate();
+
 
     function logoutAndRedirect() {
         logoutUser();
@@ -24,6 +28,8 @@ function App() {
     if (!getAccessToken()) {
         return <Login/>;
     }
+
+
 
   return (
     <div>

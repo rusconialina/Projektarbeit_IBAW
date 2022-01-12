@@ -24,3 +24,26 @@ export async function updateBook(id, payload) {
 export async function removeBook(id) {
   return Book.deleteOne({ _id: mongoose.Types.ObjectId(id) });
 }
+
+
+export async function checkAllBooksIsDateExpired(socket){
+  getBooks().then(books => {
+    let bookExpired = []
+    let bookNotExpired = []
+
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].date && books[i].date > Date.now()){
+        bookExpired.push(books[i])
+      }else {
+        bookNotExpired.push(books[i])
+      }
+    }
+
+    // send over socket io
+    let response = {expired: bookExpired, notExpired: bookNotExpired}
+    console.log(response)
+    socket.emit('checkExpireDateBooks', response);
+  })
+
+
+}

@@ -5,15 +5,23 @@ import authenticationRoutes from "./routes/authentication.routes.mjs";
 import {checkAccessToken} from "./services/authentication.service.mjs";
 import connect from "./utils/db.mjs";
 
+import { createServer } from 'http'
+import { Server } from 'socket.io'
+import {checkAllBooksIsDateExpired} from "./services/book.service.mjs";
+
+
+
 connect();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const portExpressServer = process.env.PORT || 3000;
+const portSocketIoServer = process.env.PORT || 8082;
 const loginRoute = '/authentication/login'
 
-// develop helper see wich port is the node.js express's application running
-app.listen(port, () =>
-  console.log(`App listening on http://localhost:${port}`)
+
+// express server listening
+app.listen(portExpressServer, () =>
+  console.log(`App listening on http://localhost:${portExpressServer}`)
 );
 
 
@@ -23,7 +31,6 @@ app.use(express.json());
 
 // Cors Middleware
 app.use(cors());
-
 
 // Token Authentication Middleware (Protect all Routes except the login route)
 app.use(function (req, res, next) {
@@ -57,5 +64,27 @@ app.use(function (req, res, next) {
 app.use("/authentication", authenticationRoutes);
 app.use("/book", bookRoutes);
 
-
 // =========== END Register all controllers ===========
+
+
+// =========== Socket IO ===========
+const httpServer = createServer(app);
+const intervallInSecondsCheckIsDateExpired = 5;
+const io = new Server(httpServer, { cors: {
+        origin: ["http://localhost:8082", "http://localhost:8000"], // register all frontend application urls
+        methods: ["GET", "POST"]
+    } });
+
+io.on("connection", (socket) => {
+    console.log('socket is connected')
+    console.log('socket id is: '  + socket.id)
+
+    // run all X seconds after connecting to socket
+    setInterval(checkAllBooksIsDateExpired, intervallInSecondsCheckIsDateExpired * 1000, socket);
+});
+
+httpServer.listen(portSocketIoServer, () =>
+    console.log(`Socket IO listening on http://localhost:${portSocketIoServer}`)
+);
+
+// =========== END Socket IO ===========

@@ -24,6 +24,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "rxjs": "^7.5.2",
+    "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
   },
