@@ -14,5 +14,5 @@ export function saveBook(bookRequest){
 }
 
 export function deleteBook(bookId){
-    return axios.delete(baseBackendUrl + 'book', bookId);
+    return axios.delete(baseBackendUrl + 'book/' + bookId);
 }
