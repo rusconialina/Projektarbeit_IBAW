@@ -10,9 +10,6 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import {getAccessToken, logoutUser} from "./services/AuthenticationService";
-import {io} from "socket.io-client";
-import {baseSocketIoBackendUrl} from "./env/environment";
-import {useEffect, useState} from "react";
 
 function App() {
     const navigate = useNavigate();

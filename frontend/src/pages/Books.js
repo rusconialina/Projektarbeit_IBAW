@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
 
+
 const columns = [
     {
         "field": "titel",
