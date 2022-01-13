@@ -12,6 +12,9 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 export default function Login() {
@@ -22,7 +25,7 @@ export default function Login() {
   });
   let navigate = useNavigate();
 
-  const message = document.getElementById("message");
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,11 +33,11 @@ export default function Login() {
     await loginUser(
         new LoginRequest(username, password)
     ).then(function (response){
-      //message.innerHTML = "";
+
       navigate('/books');
       return true;
     }).catch(function (error) {
-      message.innerHTML = "Benutzername oder/und Passwort falsch.";
+      setOpen(true);
     });
   };
 
@@ -49,6 +52,7 @@ export default function Login() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
 
 
   return (
@@ -92,11 +96,32 @@ export default function Login() {
               <Button onClick={handleSubmit} variant="contained" >
                 Anmelden
               </Button>
-
             </FormControl>
           </div>
-          <div className={'alert alert-danger'} id="message" >
-          </div>
+
+          <FormControl>
+            <div className={'alert'} id="alert" >
+              <Collapse in={open}>
+                <Alert
+                    severity="error"
+                    action={
+                      <IconButton
+                          aria-label="close"
+                          color="inherit"
+                          size="small"
+                          onClick={() => {
+                            setOpen(false);
+                          }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                >
+                  Benutzername und/oder Passwort falsch.
+                </Alert>
+              </Collapse>
+            </div>
+          </FormControl>
         </form>
       </div>
 

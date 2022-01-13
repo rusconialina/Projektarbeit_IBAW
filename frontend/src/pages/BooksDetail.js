@@ -6,6 +6,10 @@ import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {deleteBook, getBookById, saveBook, updateBook} from "../services/BookService";
 import {useState} from "react";
 import {BookRequest} from "../models/BookRequest";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Collapse from "@mui/material/Collapse";
 
 export default function BookDetail() {
     const navigate = useNavigate();
@@ -16,6 +20,10 @@ export default function BookDetail() {
     const [rate, setRate] = useState();
     const [date, setDate] = useState();
     const [genre, setGenre] = useState();
+
+    const [open, setOpen] = useState(false);
+    const [severity, setSeverity] = useState();
+    const [alertText, setAlertText] = useState();
 
     // get form url, if bookId not defined then create new book otherwise update existing book in db
     const { bookId } = useParams();
@@ -44,7 +52,9 @@ export default function BookDetail() {
     function clickSave() {
         // check required input
         if ((titel === "") || (titel === null)) {
-            message("Titel fehlt");
+            setAlertText("Bitte einen Titel eingeben.");
+            setOpen(true);
+            setSeverity("warning");
             return;
         }
 
@@ -62,16 +72,22 @@ export default function BookDetail() {
                 let month = date.substring(5, 7);
                 let day = date.substring(8, 10);
                 if (year < 1000 || year > 3000)  {
-                    message("Datum ausserhalb des erlaubten Zeitraumes.");
+                    setAlertText("Datum ausserhalb des erlaubten Zeitraumes.");
+                    setOpen(true);
+                    setSeverity("warning");
                     return;
                 }
                 if(month > 12 || day > 31){
                     //Auf die Prüfung von effektive Tage pro Monat wird verzichtet.
-                    message("Datum existiert nicht. Bitte im Format yyyy-MM-dd eingeben.");
+                    setAlertText("Datum existiert nicht. Bitte im Format yyyy-MM-dd eingeben.");
+                    setOpen(true);
+                    setSeverity("warning");
                     return;
                 }
             }else{
-                message("Falsches Datumsformat. Bitte im Format yyyy-MM-dd eingeben.");
+                setAlertText("Falsches Datumsformat. Bitte im Format yyyy-MM-dd eingeben.");
+                setOpen(true);
+                setSeverity("warning");
                 return;
             }
         }
@@ -89,19 +105,25 @@ export default function BookDetail() {
             saveBook(bookRequest)
                 .then(function (response) {
                     message("Buch wurde erstellt.");
+                    //todo alert in books
                     navigate('/books')
                 })
                 .catch(function (error) {
-                    message("FEHLER \nBuch konnte nicht gespeichert werden");
+                    setAlertText("Buch konnte nicht gespeichert werden");
+                    setOpen(true);
+                    setSeverity("error");
                 });
         }else {
             updateBook(bookRequest)
                 .then(function (response) {
                     message("Buch wurde aktualisiert.");
+                    //todo alert in books
                     navigate('/books')
                 })
                 .catch(function (error) {
-                    message("FEHLER \nÄnderungen konnten nicht gespeichert werden");
+                    setAlertText("Änderungen konnten nicht gespeichert werden");
+                    setOpen(true);
+                    setSeverity("error");
                 });
         }
     }
@@ -110,10 +132,12 @@ export default function BookDetail() {
         deleteBook(bookId)
             .then(function (response) {
                 message("Buch wurde gelöscht");
+                //todo alert in books
                 navigate('/books')
             })
             .catch(function (error) {
                 message("FEHLER \nBuch konnte nicht gelöscht werden");
+                //todo alert in books
                 navigate('/books')
             });
     }
@@ -193,6 +217,27 @@ export default function BookDetail() {
                     Löschen
                 </Button>
             </div>
+            <Collapse in={open}>
+                <Alert
+                    className="alert"
+                    id="alertText"
+                    severity={severity}
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setOpen(false);
+                            }}
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                    }
+                >
+                    {alertText}
+                </Alert>
+            </Collapse>
         </div>
     );
 }

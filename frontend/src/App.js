@@ -4,7 +4,6 @@ import Books from "./pages/Books";
 import Book from "./pages/BooksDetail";
 import "./styles/App.css";
 
-
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -13,7 +12,7 @@ import "@fontsource/roboto/700.css";
 import {getAccessToken, logoutUser} from "./services/AuthenticationService";
 import {io} from "socket.io-client";
 import {baseSocketIoBackendUrl} from "./env/environment";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
     const navigate = useNavigate();
@@ -28,8 +27,6 @@ function App() {
     if (!getAccessToken()) {
         return <Login/>;
     }
-
-
 
   return (
     <div>
