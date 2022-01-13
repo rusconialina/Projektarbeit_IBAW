@@ -6,7 +6,6 @@ import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {deleteBook, getBookById, saveBook, updateBook} from "../services/BookService";
 import {useState} from "react";
 import {BookRequest} from "../models/BookRequest";
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 export default function BookDetail() {
     const navigate = useNavigate();
@@ -23,32 +22,23 @@ export default function BookDetail() {
     let isNewBook = true;
     if (bookId != 0){
         isNewBook = false;
+        getBookById(bookId)
+            .then(function (response) {
+                // todo update geht nicht wegen aktualisierung
+                // todo anzeige beim ersten laden des details
 
-       // if (reload) {
-
-            getBookById(bookId)
-                .then(function (response) {
-                    // todo update geht nicht wegen aktualisierung
-                    // todo anzeige beim ersten laden des details
-
-                    // set html form data form http request
-                    setTitel(response.data.titel)
-                    setVolume(response.data.volume)
-                    setAutor(response.data.autor)
-                    setRate(response.data.rate)
-                    setDate(response.data.date)
-                    setGenre(response.data.genre)
-                })
-                .catch(function (error) {
-                    // book not found in database go back to übersicht
-                    navigate('/books')
-                })
-
-
-   //     } else {
-     //       console.log("else " + reload);
-
-     //   }
+                // set html form data form http request
+                setTitel(response.data.titel)
+                setVolume(response.data.volume)
+                setAutor(response.data.autor)
+                setRate(response.data.rate)
+                setDate(response.data.date)
+                setGenre(response.data.genre)
+            })
+            .catch(function (error) {
+                // book not found in database go back to übersicht
+                navigate('/books')
+            })
     }
 
     function message(alert){
@@ -58,17 +48,45 @@ export default function BookDetail() {
     }
 
     function clickSave() {
-        if ((titel === "") && (titel === null)) {
+        if ((titel === "") || (titel === null)) {
+            message("Titel fehlt");
             return;
         }
 
+        if ((date !== "") && (date !== null)){
+            let checkDate = true;
+            if (date.length !== 10) {
+                checkDate = false;
+            }
+            if (date.substring(4, 5) !== '-' || date.substring(7, 8) !== '-') {
+                checkDate = false;
+            }
+            if (checkDate){
+                let year = date.substring(0, 4);
+                let month = date.substring(5, 7);
+                let day = date.substring(8, 10);
+                if (year < 1000 || year > 3000)  {
+                    message("Datum ausserhalb des erlaubten Zeitraumes.");
+                    return;
+                }
+                if(month > 12 || day > 31){
+                    //Auf die Prüfung von Tage pro Monat wird verzichtet.
+                    message("Datum existiert nicht. Bitte im Format yyyy-MM-dd eingeben.");
+                    return;
+                }
+            }else{
+                message("Falsches Datumsformat. Bitte im Format yyyy-MM-dd eingeben.");
+                return;
+            }
+        }
+
         let bookRequest = new BookRequest(
-            titel,
-            volume,
-            autor,
-            date,
-            rate,
-            genre
+        titel,
+        volume,
+        autor,
+        date,
+        rate,
+        genre
         );
 
         if (isNewBook){
@@ -104,6 +122,10 @@ export default function BookDetail() {
                 navigate('/books')
             });
     }
+
+
+
+
 /*
     const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
     const handleChange = (newValue) => {
@@ -167,7 +189,7 @@ export default function BookDetail() {
                     />
                     <TextField
                         id="outlined-basic"
-                        label="Datum"
+                        label="Datum (yyyy-MM-dd)"
                         variant="outlined"
                         onChange={(e) => setDate(e.target.value)}
                         value={date}
