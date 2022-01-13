@@ -1,10 +1,7 @@
 import {io} from "socket.io-client";
 import {baseSocketIoBackendUrl} from "../env/environment";
 import {getAccessToken} from "./AuthenticationService";
-import {Alert} from "@mui/material";
 import * as React from 'react';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
 
 export function startListeningOnSocket() {
     let socket = io(baseSocketIoBackendUrl, {
