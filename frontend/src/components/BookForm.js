@@ -66,9 +66,9 @@ export class BookForm extends React.Component {
             this.state.titel,
             this.state.volume,
             this.state.autor,
-            this.state.date,
+            this.state.genre,
             this.state.rate,
-            this.state.genre
+            this.state.date
         );
 
         if (this.isNewBook){

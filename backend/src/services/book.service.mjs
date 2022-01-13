@@ -16,7 +16,6 @@ export async function createBook(payload) {
 }
 
 export async function updateBook(id, payload) {
-  //todo update geht noch nicht
   return Book.findOneAndUpdate({ _id: mongoose.Types.ObjectId(id) }, payload, {
     new: true,
   });
@@ -29,7 +28,6 @@ export async function removeBook(id) {
 export async function checkAllBooksIsDateExpired(socket){
   getBooks().then(books => {
     let bookExpired = []
-    let bookNotExpired = []
 
     for (let i = 0; i < books.length; i++) {
       if (books[i].date && books[i].date < Date.now()){

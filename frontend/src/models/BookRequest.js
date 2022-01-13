@@ -1,10 +1,10 @@
 export class BookRequest {
-    constructor(titel, volume, autor, date, rate, genre) {
+    constructor(titel, volume, autor, genre, rate, date) {
         this.titel = titel;
         this.volume = volume;
         this.autor = autor;
-        this.date = date;
-        this.rate = rate;
         this.genre = genre;
+        this.rate = rate;
+        this.date = date;
     }
 }
