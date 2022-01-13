@@ -28,7 +28,7 @@ export default function BookDetail() {
                 // todo anzeige beim ersten laden des details
 
                 // set html form data form http request
-                setTitel(response.data.titel)
+                setTitel = (response.data.titel)
                 setVolume(response.data.volume)
                 setAutor(response.data.autor)
                 setRate(response.data.rate)
@@ -53,7 +53,8 @@ export default function BookDetail() {
             return;
         }
 
-        if ((date !== "") && (date !== null)){
+        // Check Date input
+        if ((date !== "") && (date !== null) && (date !== undefined)){
             let checkDate = true;
             if (date.length !== 10) {
                 checkDate = false;
