@@ -13,11 +13,11 @@ export function saveBook(bookRequest){
     return axios.post(baseBackendUrl + 'book', bookRequest);
 }
 
-export function updateBook(bookId){
-    return axios.put(baseBackendUrl + 'book/' + bookId);
+export function updateBook(bookId, bookRequest){
+    console.log(bookId, bookRequest);
+    return axios.put(baseBackendUrl + 'book/' + bookId, bookRequest);
 }
 
 export function deleteBook(bookId){
-    console.log(baseBackendUrl + 'book', bookId);
     return axios.delete(baseBackendUrl + 'book/' + bookId);
 }

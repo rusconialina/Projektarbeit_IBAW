@@ -114,7 +114,8 @@ export default function BookDetail() {
                     setSeverity("error");
                 });
         }else {
-            updateBook(bookRequest)
+            console.log(bookRequest);
+            updateBook(bookId, bookRequest)
                 .then(function (response) {
                     message("Buch wurde aktualisiert.");
                     //todo alert in books
