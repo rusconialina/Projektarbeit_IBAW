@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {LoginRequest} from "../models/LoginRequest";
-import  {loginUser} from "../services/AuthenticationService";
+import {getAccessToken, loginUser} from "../services/AuthenticationService";
 import { useNavigate } from "react-router-dom";
 import '../styles/App.css'
 import Button from "@mui/material/Button";
@@ -15,6 +15,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
 import CloseIcon from '@mui/icons-material/Close';
+import axios from "axios";
 
 
 export default function Login() {
@@ -33,7 +34,6 @@ export default function Login() {
     await loginUser(
         new LoginRequest(username, password)
     ).then(function (response){
-
       navigate('/books');
       return true;
     }).catch(function (error) {

@@ -33,6 +33,8 @@ export default function BooksPage() {
 
     useEffect(() => {
 
+        console.log('test')
+
         getBooks()
             .then(function (response) {
                 setData(response.data);

@@ -7,12 +7,17 @@ import {startListeningOnSocket} from "./SocketService";
 
 const sessionTokenKey = 'accessToken';
 
+export function activateAuthMiddleware(){
+    axios.defaults.headers.common['Authorization'] = getAccessToken();
+}
+
 export function loginUser(loginRequest) {
     return axios.post(baseBackendUrl + 'authentication/login', loginRequest)
         .then(function (response) {
             if(response.status === 200 && response.data.accessToken){
                 setAccessToken(response.data.accessToken);
                 startListeningOnSocket();
+                activateAuthMiddleware();
             }
             return response
         });
