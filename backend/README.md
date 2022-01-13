@@ -1,2 +1,5 @@
 # Backend
-.env -> MONGO_URI = 'xxx'
+.env 
+MONGO_URI = 'xxx'
+USER = 'xxx'
+PASSWORD = 'xxx'
