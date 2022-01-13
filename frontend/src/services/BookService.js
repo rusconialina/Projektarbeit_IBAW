@@ -20,5 +20,4 @@ export function updateBook(bookId){
 export function deleteBook(bookId){
     console.log(baseBackendUrl + 'book', bookId);
     return axios.delete(baseBackendUrl + 'book/' + bookId);
-
 }

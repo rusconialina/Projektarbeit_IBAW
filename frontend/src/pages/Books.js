@@ -4,14 +4,13 @@ import {getBooks} from "../services/BookService";
 import {useNavigate} from "react-router-dom";
 import Button from "@mui/material/Button";
 
-// Überschrift
+
 const columns = [
     {
         "field": "titel",
         "minWidth": 250,
         "headerName": "Buch",
     },
-
     {field: "volume", minWidth: 50, headerName: "Band"},
     {field: "autor", minWidth: 150, headerName: "Autor"},
     {field: "date", minWidth: 105, headerName: "Datum", type:"date"},
@@ -59,7 +58,6 @@ export default function BooksPage() {
                     hideFooter= "true"
                 />
             </div>
-
         </div>
     );
 }

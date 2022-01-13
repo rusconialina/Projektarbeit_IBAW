@@ -10,7 +10,6 @@ import { Server } from 'socket.io'
 import {checkAllBooksIsDateExpired} from "./services/book.service.mjs";
 
 
-
 connect();
 
 const app = express();
@@ -56,14 +55,12 @@ app.use(function (req, res, next) {
   next();
 
 });
-
 // =========== END Register Middleware ===========
 
 
 // =========== Register all controllers ===========
 app.use("/authentication", authenticationRoutes);
 app.use("/book", bookRoutes);
-
 // =========== END Register all controllers ===========
 
 
@@ -86,5 +83,4 @@ io.on("connection", (socket) => {
 httpServer.listen(portSocketIoServer, () =>
     console.log(`Socket IO listening on http://localhost:${portSocketIoServer}`)
 );
-
 // =========== END Socket IO ===========

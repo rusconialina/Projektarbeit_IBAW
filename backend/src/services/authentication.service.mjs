@@ -1,4 +1,3 @@
-
 const staticAccessToken = 'This_Is_A_STATIC_ACCESS_TOKEN'
 const staticEmail = 'a'
 const staticPassword = 'a'

@@ -41,13 +41,8 @@ export default function BookDetail() {
             })
     }
 
-    function message(alert){
-        setTimeout(function(){
-            window.alert(alert);
-        },100);
-    }
-
     function clickSave() {
+        // check required input
         if ((titel === "") || (titel === null)) {
             message("Titel fehlt");
             return;
@@ -71,7 +66,7 @@ export default function BookDetail() {
                     return;
                 }
                 if(month > 12 || day > 31){
-                    //Auf die Prüfung von Tage pro Monat wird verzichtet.
+                    //Auf die Prüfung von effektive Tage pro Monat wird verzichtet.
                     message("Datum existiert nicht. Bitte im Format yyyy-MM-dd eingeben.");
                     return;
                 }
@@ -108,7 +103,6 @@ export default function BookDetail() {
                 .catch(function (error) {
                     message("FEHLER \nÄnderungen konnten nicht gespeichert werden");
                 });
-
         }
     }
 
@@ -124,22 +118,12 @@ export default function BookDetail() {
             });
     }
 
+    function message(alert){
+        setTimeout(function(){
+            window.alert(alert);
+        },100);
+    }
 
-
-
-/*
-    const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
-    const handleChange = (newValue) => {
-        setValue(newValue);
-    };
-    <DesktopDatePicker
-        label="Date desktop"
-        inputFormat="dd/MM/yyyy"
-        value={value}
-        onChange={handleChange}
-        //renderInput={(params) => <TextField {...params} />}
-    />
-*/
     return (
         <div style={{ width: "100%" }} className='main-book'>
                 <h2>Detail</h2>

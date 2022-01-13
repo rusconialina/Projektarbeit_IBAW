@@ -5,8 +5,6 @@ import {useNavigate} from "react-router-dom";
 import {startListeningOnSocket} from "./SocketService";
 
 
-
-
 const sessionTokenKey = 'accessToken';
 
 export function loginUser(loginRequest) {
@@ -26,7 +24,7 @@ export function logoutUser(){
 
 export function setAccessToken(accessToken){
     if (accessToken === null || accessToken === undefined){
-        //clearAccessToken()
+        clearAccessToken();
     }else {
         sessionStorage.setItem(sessionTokenKey, accessToken);
     }

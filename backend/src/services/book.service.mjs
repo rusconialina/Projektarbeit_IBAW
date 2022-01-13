@@ -26,7 +26,6 @@ export async function removeBook(id) {
   return Book.deleteOne({ _id: mongoose.Types.ObjectId(id) });
 }
 
-
 export async function checkAllBooksIsDateExpired(socket){
   getBooks().then(books => {
     let bookExpired = []
@@ -43,6 +42,4 @@ export async function checkAllBooksIsDateExpired(socket){
     console.log(response)
     socket.emit('checkExpireDateBooks', response);
   })
-
-
 }
