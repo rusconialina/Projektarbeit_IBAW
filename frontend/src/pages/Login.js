@@ -22,6 +22,7 @@ export default function Login() {
   });
   let navigate = useNavigate();
 
+  const message = document.getElementById("message");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +30,11 @@ export default function Login() {
     await loginUser(
         new LoginRequest(username, password)
     ).then(function (response){
+      //message.innerHTML = "";
       navigate('/books');
       return true;
     }).catch(function (error) {
-      alert("Benutzername oder/und Passwort falsch.");
+      message.innerHTML = "Benutzername oder/und Passwort falsch.";
     });
   };
 
@@ -90,10 +92,14 @@ export default function Login() {
               <Button onClick={handleSubmit} variant="contained" >
                 Anmelden
               </Button>
+
             </FormControl>
+          </div>
+          <div className={'alert alert-danger'} id="message" >
           </div>
         </form>
       </div>
+
     </div>
   );
 }
