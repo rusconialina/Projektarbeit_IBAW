@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const staticAccessToken = 'This_Is_A_STATIC_ACCESS_TOKEN'
-const staticEmail = 'a'
-const staticPassword = 'a'
+const staticEmail = process.env.USER
+const staticPassword = process.env.PASSWORD
 
 export function checkAccessToken(accessToken) {
     if (staticAccessToken === accessToken){
