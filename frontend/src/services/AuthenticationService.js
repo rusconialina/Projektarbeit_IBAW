@@ -1,7 +1,6 @@
 import axios from "axios";
 import {baseBackendUrl} from "../env/environment";
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import {startListeningOnSocket} from "./SocketService";
 
 

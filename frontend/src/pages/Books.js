@@ -20,8 +20,6 @@ const columns = [
     {field: "genre", minWidth: 150, headerName: "Genre"},
     {field: "rate", minWidth: 50, headerName: "Bewertung"},
     {field: "date", minWidth: 105, headerName: "Datum", type:"date"},
-
-
 ];
 
 

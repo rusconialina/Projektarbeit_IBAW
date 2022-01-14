@@ -234,5 +234,4 @@ export class BookForm extends React.Component {
             </div>
         );
     }
-
 }
