@@ -20,6 +20,7 @@ const columns = [
     {field: "genre", minWidth: 150, headerName: "Genre"},
     {field: "rate", minWidth: 50, headerName: "Bewertung"},
     {field: "date", minWidth: 105, headerName: "Datum", type:"date"},
+    //valueGetter:({data}) => data && new Date(data) // todo Date format
 ];
 
 
@@ -32,9 +33,6 @@ export default function BooksPage() {
     const [severity, setSeverity] = useState();
 
     useEffect(() => {
-
-        console.log('test')
-
         getBooks()
             .then(function (response) {
                 setData(response.data);
