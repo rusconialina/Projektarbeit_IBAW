@@ -8,6 +8,10 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {Collapse} from "@mui/material";
 import {BookRequest} from "../models/BookRequest";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import deLocale from 'date-fns/locale/de';
 
 export class BookForm extends React.Component {
 
@@ -186,14 +190,18 @@ export class BookForm extends React.Component {
                             onChange={this.formValChange}
                             value={this.state.rate}
                         />
-                        <TextField
-                            id="outlined-basic"
-                            label="Datum (yyyy-MM-dd)"
-                            variant="outlined"
-                            name="date"
-                            onChange={this.formValChange}
-                            value={this.state.date}
-                        />
+
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                            <DatePicker
+                                label="Rückgabedatum"
+                                name="date"
+                                mask={"__.__.____"[deLocale]}
+                                value={this.state.date}
+                                onChange={this.formValChange}
+                                renderInput={(params) => <TextField {...params} helperText={params?.inputProps?.placeholder}/>}
+                            />
+                        </LocalizationProvider>
+
                     </Box>
 
                 </div>
