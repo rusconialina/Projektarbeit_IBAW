@@ -11,7 +11,7 @@ const bookSchema = new Schema({
   autor: String, // Autor
   genre: String, // Genre
   date: Date,  // Rückgabedatum
-  rate: Number, //Bewertung
+  rate: String, //Bewertung
 });
 
 export default mongoose.model("book", bookSchema, "book");
